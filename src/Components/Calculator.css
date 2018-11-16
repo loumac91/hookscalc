@@ -1,4 +1,7 @@
 .calculator {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3.5fr;
     height: 800px;
     width: 500px;
     border: 5px solid black;
