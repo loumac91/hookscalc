@@ -8,18 +8,10 @@ export default () => {
     const calculator = (() => {
         const [displayValue, setDisplayValue] = useState('0');
         const [historyValue, setHistoryValue] = useState('');
-        const [operatorPressed, setOperatorPressed] = useState(false);
-        const [a, setA] = useState(0);
-        const [operator, setOperator] = useState('');
-        const hasDecimal = false;
-
         const [lastKeyPress, setLastKeyPress] = useState('');
+        const [a, setA] = useState(null);
 
-        const lastKeyWasOperator = () => {
-            return ["÷", "-", "+", "x"].includes(lastKeyPress);
-        }
-
-        const getResult = (b) => {
+        const getResult = (operator, b) => {
             switch (operator) {
                 case "÷": return a / b;
                 case "x": return a * b;
@@ -27,6 +19,10 @@ export default () => {
                 case "+": return a + b;
                 default: break;
             }
+        }
+
+        const lastKeyWasOperator = () => {
+            return ["÷", "-", "+", "x"].includes(lastKeyPress);
         }
         
         const appendToDisplay = (numericString) => {
@@ -36,81 +32,76 @@ export default () => {
 
         const reset = () => {
             setHistoryValue('');
-            setOperatorPressed(false);
             setDisplayValue('0');
-            setA(0);
-            setOperator('');
+            setLastKeyPress('');
+            setA(null);
         }
 
-        const handleOperatorPressed = (operatorKey) => {
-            
-            if(operatorKey === "C") {
-                reset();
-                return;
-            }                 
-
-            //if(operatorPressed) return;
-
-            if (a === 0) {
-                setA(parseFloat(displayValue));
-            }
-
-            //if (operator === '') {
-                setOperator(operatorKey);
-            
-
-            setOperatorPressed(true);
-
-            const setHistory = () => {
-                const historyAppended = ``;
-
-                if (historyValue === '') {
-                    setHistoryValue(`${displayValue} ${operatorKey}`);
-                } else {
-                    setHistoryValue(`${historyValue} ${displayValue} ${operatorKey}`);
+        const getPreviousOperator = () => {
+            let i = historyValue.length;
+            while (i--) {
+                const currentChar = historyValue.charAt(i);
+                if (["÷", "-", "+", "x"].includes(currentChar)) {
+                    return currentChar;
                 }
             }
-
-            switch (operatorKey) {
-                case "÷": 
-                case "x":
-                case "-":
-                case "+":
-                    setHistory();
-                    break;
-                case "=":
-                    setHistoryValue('');
-                    setDisplayValue(getResult(parseFloat(displayValue)));
-                    setOperatorPressed(false);
-                    break;
-                default:
-                    break;
-            }            
         }
-
+ 
         return {
             displayValue,
             historyValue,
             handleKeyPress: (keyValue) => {
-                const numericKeyPress = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(keyValue);
-                const validDecimalKeyPress = keyValue === "." && !hasDecimal;
+                
+                const runningCalc = '';
 
-                if (!numericKeyPress && !validDecimalKeyPress) {
-                    handleOperatorPressed(keyValue);
+                const invalidDecimalKeyPress = keyValue === "." && displayValue.indexOf(".") >= 0;
+                const operatorPressed = ["÷", "-", "+", "x"].includes(keyValue)
+                const clear = keyValue === "C";
+                const equalsPressed =  keyValue === "=";
+
+                if (invalidDecimalKeyPress) return;
+
+                if (clear) {
+                    reset();
+                    return
+                }
+
+                if (equalsPressed) {
+                    const lastOperator = getPreviousOperator();
+                    let b = parseFloat(displayValue);
+                    let result = getResult(lastOperator, b);
+                    setHistoryValue('');
+                    setDisplayValue(result);
+                    setA(result);
+                    return;
                 }
                 
-                if (validDecimalKeyPress) {
-                    appendToDisplay(keyValue);
-                } else if(numericKeyPress) {
-                    if (operatorPressed) {
-                        //new display value
+                if (operatorPressed) {                    
+                    if (lastKeyWasOperator()) {
+                        setHistoryValue(historyValue.replace(/.$/, keyValue));
+                    } else {
+                        if (historyValue === '') {
+                            setA(parseFloat(displayValue));
+                            setHistoryValue(`${displayValue} ${keyValue}`);
+                        } else {
+                            setHistoryValue(`${historyValue} ${displayValue} ${keyValue}`);
+                            
+                            const lastOperator = getPreviousOperator();
+                            let b = parseFloat(displayValue);
+                            let result = getResult(lastOperator, b);
+                            setDisplayValue(result);
+                            setA(result);
+                        }
+                    }
+                } else {
+                    //numeric key
+                    if (lastKeyWasOperator()) {
                         setDisplayValue(keyValue);
                     } else {
                         appendToDisplay(keyValue);
-                    }                    
+                    }
                 }
 
-                setOperatorPressed(false);  
                 setLastKeyPress(keyValue);          
             }
         }
