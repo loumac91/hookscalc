@@ -13,6 +13,12 @@ export default () => {
         const [operator, setOperator] = useState('');
         const hasDecimal = false;
 
+        const [lastKeyPress, setLastKeyPress] = useState('');
+
+        const lastKeyWasOperator = () => {
+            return ["÷", "-", "+", "x"].includes(lastKeyPress);
+        }
+
         const getResult = (b) => {
             switch (operator) {
                 case "÷": return a / b;
@@ -32,28 +38,32 @@ export default () => {
             setHistoryValue('');
             setOperatorPressed(false);
             setDisplayValue('0');
+            setA(0);
+            setOperator('');
         }
 
         const handleOperatorPressed = (operatorKey) => {
-
+            
             if(operatorKey === "C") {
                 reset();
                 return;
             }                 
 
-            if(operatorPressed) return;
+            //if(operatorPressed) return;
 
             if (a === 0) {
                 setA(parseFloat(displayValue));
             }
 
-            if (operator === '') {
+            //if (operator === '') {
                 setOperator(operatorKey);
-            }  
+            
 
             setOperatorPressed(true);
 
             const setHistory = () => {
+                const historyAppended = ``;
+
                 if (historyValue === '') {
                     setHistoryValue(`${displayValue} ${operatorKey}`);
                 } else {
@@ -70,13 +80,12 @@ export default () => {
                     break;
                 case "=":
                     setHistoryValue('');
-                    let result = getResult(parseFloat(displayValue));
                     setDisplayValue(getResult(parseFloat(displayValue)));
                     setOperatorPressed(false);
                     break;
                 default:
                     break;
-            }
+            }            
         }
 
         return {
@@ -88,12 +97,11 @@ export default () => {
 
                 if (!numericKeyPress && !validDecimalKeyPress) {
                     handleOperatorPressed(keyValue);
-                    return;
                 }
                 
                 if (validDecimalKeyPress) {
                     appendToDisplay(keyValue);
-                } else {
+                } else if(numericKeyPress) {
                     if (operatorPressed) {
                         //new display value
                         setDisplayValue(keyValue);
@@ -102,7 +110,8 @@ export default () => {
                     }                    
                 }
 
-                setOperatorPressed(false);            
+                setOperatorPressed(false);  
+                setLastKeyPress(keyValue);          
             }
         }
     })();
