@@ -1,5 +1,66 @@
 .calcBody {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
     background-color: purple;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+    padding: 5px;
 }
+
+.button {
+    display: grid;
+    place-content: center;
+    background-color: black;
+    color:white;
+    border-radius: 5px;
+}
+
+.unknown {}
+
+.cancel {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.divide {}
+
+.multiply {}
+
+.seven {}
+
+.eight {}
+
+.nine {}
+
+.minus {}
+
+.four {}
+
+.five {}
+
+.six {}
+
+.add {}
+
+.one {}
+
+.two {}
+
+.three {}
+
+.equals {
+    grid-row-start: 4;
+    grid-row-end: 6;
+    grid-column: 4;
+}
+
+.zero {
+    grid-row: 5;
+    grid-column-start: 1;
+    grid-column-end: 3;    
+}
+
+.decimal {}
