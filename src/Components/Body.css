@@ -12,13 +12,16 @@
 .button {
     display: grid;
     place-content: center;
-    background-color: black;
     color:white;
     border-radius: 5px;
     font-size: 48px;
 }
 
-.unknown {}
+.cancel, 
+.divide, 
+.multiply {
+    background-color: #130f10;
+}
 
 .cancel {
     grid-row: 1;
@@ -26,52 +29,19 @@
     grid-column-end: 3;
 }
 
-
-.divide {}
-
-.multiply {}
-
-.seven {
-    background-color: #58595b;
-}
-
-.eight {
-    background-color: #58595b;
-}
-
-.nine {
-    background-color: #58595b;
-}
-
-.minus {
-    background-color: #58595b;
-}
-
-.four {
-    background-color: #58595b;
-}
-
-.five {
-    background-color: #58595b;
-}
-
-.six {
-    background-color: #58595b;
-}
-
-.add {
-    background-color: #58595b;
-}
-
-.one {
-    background-color: #58595b;
-}
-
-.two {
-    background-color: #58595b;
-}
-
-.three {
+.seven,
+.eight,
+.nine,
+.minus,
+.four,
+.five,
+.six,
+.add,
+.one,
+.two,
+.three,
+.zero,
+.decimal {
     background-color: #58595b;
 }
 
@@ -85,10 +55,5 @@
 .zero {
     grid-row: 5;
     grid-column-start: 1;
-    grid-column-end: 3;    
-    background-color: #58595b;
-}
-
-.decimal {
-    background-color: #58595b;
+    grid-column-end: 3; 
 }

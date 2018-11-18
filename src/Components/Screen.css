@@ -9,19 +9,21 @@
     padding: 5px;
 }
 
-.historyContainer {
-    grid-row: 1;
+.historyContainer,
+.valueContainer {
     display: grid;
     align-items: center;
     justify-items: end;   
     background-color: #a2af77;
+    padding: 5px;
+}
+
+
+.historyContainer {
+    grid-row: 1;
 }
 
 .valueContainer {
     grid-row: 2;
     font-size: 48px;
-    display: grid;
-    align-items: center;
-    justify-items: end;  
-    background-color: #a2af77;  
 }

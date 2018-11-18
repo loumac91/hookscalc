@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Screen.css';
 
-export default () => {
+export default (screenValue, history) => {
 
     const [value, setValue] = useState("123456789");
 
