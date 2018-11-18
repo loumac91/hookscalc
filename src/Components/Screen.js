@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Screen.css';
 
-export default (screenValue, history) => {
-
-    const [value, setValue] = useState("123456789");
-
+export default ({displayValue, historyValue}) => {
     return (
         <div className="screen">
             <div className="historyContainer">
-                "placeHolder"
+                {historyValue}
             </div>
             <div className="valueContainer">
-                {value}
+                {displayValue}
             </div>
         </div>
     );

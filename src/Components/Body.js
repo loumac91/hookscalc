@@ -1,28 +1,54 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Body.css';
 
+const divButton = (className, value, keyPressHandler) => {
+    return <div className={className} 
+                onClick={(e) => {
+                    keyPressHandler(e.target.textContent);
+                }}>
+        {value}
+    </div>
+};
 
+export default ({keyPressHandler}) => {
 
-export default () => {
+    const cancel = divButton("button cancel", "C", keyPressHandler);
+    const divide = divButton("button divide", "÷", keyPressHandler);
+    const multiply = divButton("button multiply", "x", keyPressHandler);
+    const seven = divButton("button seven", "7", keyPressHandler);
+    const eight = divButton("button eight", "8", keyPressHandler);
+    const nine = divButton("button nine", "9", keyPressHandler);
+    const minus = divButton("button minus", "-", keyPressHandler);
+    const four = divButton("button four", "4", keyPressHandler);
+    const five = divButton("button five", "5", keyPressHandler);
+    const six = divButton("button six", "6", keyPressHandler);
+    const add = divButton("button add", "+", keyPressHandler);
+    const one = divButton("button one", "1", keyPressHandler);
+    const two = divButton("button two", "2", keyPressHandler);
+    const three = divButton("button three", "3", keyPressHandler);
+    const equals = divButton("button equals", "=", keyPressHandler);
+    const zero = divButton("button zero", "0", keyPressHandler);
+    const decimal = divButton("button decimal", ".", keyPressHandler);
+
     return (
         <div className="calcBody">
-            <div className="button cancel">C</div>
-            <div className="button divide">÷</div>
-            <div className="button multiply">x</div>
-            <div className="button seven">7</div>
-            <div className="button eight">8</div>
-            <div className="button nine">9</div>
-            <div className="button minus">-</div>
-            <div className="button four">4</div>
-            <div className="button five">5</div>
-            <div className="button six">6</div>
-            <div className="button add">+</div>
-            <div className="button one">1</div>
-            <div className="button two">2</div>
-            <div className="button three">3</div>
-            <div className="button equals">=</div>
-            <div className="button zero">0</div>
-            <div className="button decimal">.</div>
+            {cancel}
+            {divide}
+            {multiply}
+            {seven}
+            {eight}
+            {nine}
+            {minus}
+            {four}
+            {five}
+            {six}
+            {add}
+            {one}
+            {two}
+            {three}
+            {equals}
+            {zero}
+            {decimal}         
         </div>
     );
 };
