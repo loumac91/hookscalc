@@ -1,5 +1,27 @@
 .screen {
     grid-column: 1;
     grid-row:1;
-    background-color: red;
+    background-color: #39383d;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr;
+    place-content: center;
+    padding: 5px;
+}
+
+.historyContainer {
+    grid-row: 1;
+    display: grid;
+    align-items: center;
+    justify-items: end;   
+    background-color: #a2af77;
+}
+
+.valueContainer {
+    grid-row: 2;
+    font-size: 48px;
+    display: grid;
+    align-items: center;
+    justify-items: end;  
+    background-color: #a2af77;  
 }

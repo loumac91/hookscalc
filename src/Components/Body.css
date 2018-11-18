@@ -1,10 +1,10 @@
 .calcBody {
     grid-column: 1;
     grid-row: 2;
-    background-color: purple;
+    background-color: #39383d;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-gap: 5px;
     padding: 5px;
 }
@@ -15,6 +15,7 @@
     background-color: black;
     color:white;
     border-radius: 5px;
+    font-size: 48px;
 }
 
 .unknown {}
@@ -25,42 +26,69 @@
     grid-column-end: 3;
 }
 
+
 .divide {}
 
 .multiply {}
 
-.seven {}
+.seven {
+    background-color: #58595b;
+}
 
-.eight {}
+.eight {
+    background-color: #58595b;
+}
 
-.nine {}
+.nine {
+    background-color: #58595b;
+}
 
-.minus {}
+.minus {
+    background-color: #58595b;
+}
 
-.four {}
+.four {
+    background-color: #58595b;
+}
 
-.five {}
+.five {
+    background-color: #58595b;
+}
 
-.six {}
+.six {
+    background-color: #58595b;
+}
 
-.add {}
+.add {
+    background-color: #58595b;
+}
 
-.one {}
+.one {
+    background-color: #58595b;
+}
 
-.two {}
+.two {
+    background-color: #58595b;
+}
 
-.three {}
+.three {
+    background-color: #58595b;
+}
 
 .equals {
     grid-row-start: 4;
     grid-row-end: 6;
     grid-column: 4;
+    background-color: #f15a2b;
 }
 
 .zero {
     grid-row: 5;
     grid-column-start: 1;
     grid-column-end: 3;    
+    background-color: #58595b;
 }
 
-.decimal {}
+.decimal {
+    background-color: #58595b;
+}

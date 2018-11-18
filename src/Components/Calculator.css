@@ -4,6 +4,6 @@
     grid-template-rows: 1fr 3.5fr;
     height: 800px;
     width: 500px;
-    border: 5px solid black;
+    border: 5px solid #39383d;
     border-radius: 5px;
 }
